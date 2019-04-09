@@ -10,7 +10,14 @@
   <body>
     <h1>Test01</h1>
     <script>
-     
+      var map;
+      require(["esri/map"], function(Map) {
+        map = new Map("map", {
+          basemap: "topo",
+          center: [139.45, 35.75],
+          zoom: 13
+        });
+      }); 
     </script>
   </body>
 </html>
