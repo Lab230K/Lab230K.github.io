@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pilot</title>
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- Lab230K begin -->
+    <link rel="stylesheet" href="/menu.css">
+    <!-- Lab230K end -->
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/client.js" defer></script>
+    <!-- Lab230K begin -->
+    <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/leaflet.css" rel="stylesheet" />
+    <!-- Lab230K end -->
+  </head>
+  
+  <body>
+    <script src="common.js"></script>
+         
+    <header>
+      <!-- temp-->
+    </header>
+    
+    <main>
+      <!-- Lab230K begin -->
+      <!-- Menu-->
+      <div style="background:#909090">
+        <span class="main-menu" onclick="switchMenu( this, 'SubMenu1' )">Setting
+          <span style="font-size:9px;">&#9660;</span>
+          <ul id="SubMenu1" class="sub-menu" style="display:none;">
+            <li><a href="#" target="_blank">submenu</a></li>
+            <li><a href="#" target="_blank">submenu</a></li>
+          </ul>
+        </span>
+        <span id="pilot" class="bold" onclick="connectStation()">Pilot disconnected</span>
+      </div>
+      <!-- Information -->
+      <div  align="center" style="background:#909090">
+        <span id="datetime">Datetime</span>
+        <span id="weather">Weather(Geolocation is not supported by this browser.)</span>
+        <br />
+        <span id="longitude">Longitude</span> | 
+        <span id="latitude">Latitude</span> | 
+        <span id="altitude">Altitude</span> |
+        <span id="speed">Speed</span> |
+        <span id="heading">Heading</span>
+      </div>
+      
+      <div class="camera">
+        <video id="video" style="width:100%;height: 400px;display:none">Video stream not available.</video>
+        <video id="test" style="display:none"></video>
+      </div>
+      
+      <div style="position: relative">
+         <div id="map" style="width:100%;height: 400px"></div>
+      </div>
+      
+      <div align="right" style="background:#909090">
+        <span id="camera" onclick="selectCamera()">Camera</span> | 
+        <span id="camcoder" onclick="selectCamcoder()"><del>Camcoder</del></span> | 
+        <span id="button" onclick="pressButton()">Snap/Record</span>
+      
+        <!-- for testing -->
+        <script>
+          let camera = document.getElementById("camera");
+          let camcoder = document.getElementById("camcoder");
+          let button = document.getElementById("button");
+          function selectCamera() {
+            cameraMode = 0;
+            mode();
+          }
+          function selectCamcoder() {
+            cameraMode = 1;
+            mode();
+          }
+          function mode() {
+            if (cameraMode) {  
+              camera.innerHTML = "<del>Camera</del>";
+              camcoder.innerHTML = "Camcoder";
+              //button.innerHTML = "Record";
+              say("Camcoder is selected.");
+            } else {
+              camera.innerHTML = "Camera";
+              camcoder.innerHTML = "<del>Camcoder</del>";
+              //make sure to stop recording
+              say("Camera is selected.");
+            }
+          }
+          function pressButton() {
+            if (cameraMode) {
+              isRecording = !(isRecording);
+              if (isRecording) {
+                //call start
+                say("Recording...");
+              } else {
+                //call stop
+                say("Recording Stopped.");
+              }
+            } else {
+              //call snap function.
+              say("Snapped!");
+            }
+          }
+        </script>
+        <!-- for testing end-->
+        <!-- Menu-->
+        <span class="main-menu" onmouseover="switchMenu( this, 'SubMenu2', 'MouseOver' )" onmouseout="hideMenu()"
+            onclick="switchMenu( this, 'SubMenu2' )">Video setings
+          <span style="font-size:9px;">&#9660;</span>
+          <ul id="SubMenu2" class="sub-menu" style="display:none;">
+            <li><a href="#" target="_blank">sub menu1</a></li>
+            <li><a href="#" target="_blank">sub menu2</a></li>
+          </ul>
+        </span>
+      </div>
+      
+      <div id="droneController" align="center" style="background:#909090;display:none">
+        <span onclick="zoomOut()">Go Up</span> | 
+        <span onclick="zoomIn()">Go Down</span> | 
+        <span>----</span> | 
+        <span>----</span> | 
+        <span onclick="turnLeft()">Turn left</span> | 
+        <span onclick="turnRight()">Turn right</span>
+      </div>
+      <div id="droneSimulating" style="background:#909090;display:block">-</div>
+      
+      <div align="center" style="background:#909090">
+        <span id="pointOfView" onclick="pointOfView()">Live</span> | 
+        <span id="flightPlans" onclick="flightPlans()">FlightPlans</span> | 
+        <span id="simulation" onclick="simulation()">Simulation</span> | 
+        <span id="gallery" onclick="gallery()">Gallery</span> | 
+        <span id="downloadButton" onclick="download()">Download Video</span> | 
+        <image id="logo" src="logo.jpg" alt="Lab230K" onclick="resetMap = !(resetMap);say(resetMap)"></image>
+      </div>
+    </main>
+
+    <aside>
+      <section>
+        <input id="dialogueBox" type="text" placeholder="This is a dialogue box.">
+        <small>This project is started from 2019/01/12 By Kouno Fumio, Lab230K in Japan.</small>
+        <br />
+        <small>Patners: College of Science, NTU; CSIE, Taipei Tech.
+        <br />
+        <div ng-app="ngAnimate">
+          <br />Hide note: <input type="checkbox" ng-model="hideNote">
+          <div id="note"ng-hide="hideNote">
+            <pre><small>2019/01/25 Updated.</small>
+This is a MVP(Minimum Viable Product）using Agile/CI/CD development and all in the cloud (^.^)
+It could connect with a real Drone which made by Raspberry Pi if you have one.
+Without connect with the Drone still a 3D Map for general purpose use.
+<br />
+- <b>Time</b> and <b>Weather</b> are shown automatically, it setting the theme of map the same as real.
+- Click on <i>Pilot disconnected</i> to get Location by GNSS/Wi-Fi. (with voices)
+- Those pharses just below display have some dummy react without linking camera/camcoder.
+  (You can also download a empty video file too.)
+- Those menu are not functional yet.
+  (Maybe add Gray mode, HSV mode)
+- Those control buttons are for control the View of map when <i>Pilot connected</i>.
+  (Imaging that when a drone turning right, View is anti-clockwised.)
+- <i>Live</i> and <i>Map</i> for switch between Camera view and Map.
+- <i>FlightPlans</i> would show all the stations of Tokyo Yamanote Line.
+- <i>Simulation</i> would show Flight along whole Yamanote Line. (30 stations, 2.5 minutes a round.)
+  (It also read the name of the station and show the location even pilot is disconnected.)
+  (You can control the View when <i>Pilot connected</i>.)
+- We will support webcam/phone cam with computer vision on Feburary.
+  <br />
+Problems:
+<del>Due to the clearInterval is not functional well,
+when runing <i>FlightPlans</i>, <i>Simulation</i> and <i>Gallray</i>,
+it can't stop now.
+Please reload this page before try another one.</del><b>01/24 Fixed.</b>
+<br />
+<a href="techStack.html">Tech stack</a>
+<br />
+<del>
+see also: <a href="">Previous release</a>(can recording and has some functions with NLP(Nature language process)/CV(Computer vision)).
+</del>
+            </pre>
+          </div>
+        </div>
+    
+      </section>
+    </aside>
+          
+    <!-- Lab230K -->
+    <!-- Modules Begin-->
+    <script src="menu.js"></script>
+    <script src="datetime.js"></script>
+    <script src="weather.js">
+      makeRequest();
+    </script>
+    <script src="speech.js"></script>
+    <script src="geoLocation.js"></script>
+    
+    <script>
+      let connect = document.getElementById("pilot");
+      function connectStation() {
+        connection = !(connection);
+        if (connection) {
+          connect.innerHTML = "Pilot connected";
+          say("Pilot connected");
+          getLocation();
+          say("Got Location");
+          document.getElementById("droneController").style.display = "block";
+          document.getElementById("droneSimulating").style.display = "none";
+        } else {
+          connect.innerHTML = "Pilot disconnected";
+          say("Pilot disconnected");
+          showPosition();
+          document.getElementById("droneController").style.display = "none";
+          document.getElementById("droneSimulating").style.display = "block";
+        }
+      }
+    </script>
+     
+    <script>
+      //let pointOfView = document.getElementById("pointOfView");
+      function pointOfView() {
+        isLiveMode = !(isLiveMode);
+        say(isLiveMode);
+        AAA();
+      }
+      function AAA() {
+        if (isLiveMode) {
+          document.getElementById("video").style.display = "block";
+          document.getElementById("map").style.display = "none";
+          document.getElementById("pointOfView").innerHTML = "Map";
+        } else {
+          document.getElementById("video").style.display = "none";
+          document.getElementById("map").style.display = "block";
+          document.getElementById("pointOfView").innerHTML = "Live";
+        }   
+      }
+      function flightPlans() {
+        resetMap = 1;
+        isLiveMode = 0;
+        AAA();
+        showPOI();
+      }
+    </script>
+    <script src="getCamera.js"></script>
+    <script src="getCSV.js"></script>         
+    <script src="maps.js"></script>
+
+    <script>getMap();</script>
+    <!-- Modules End-->
+    <script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="say('OpenCV is Ready.')" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-animate.js"></script>
+
+    <footer>
+      Made with <a href="https://glitch.com">Glitch</a>!
+    </footer>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+
+  </body>
+</html>
