@@ -3,8 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title>你好，GitHub</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.28/esri/css/esri.css">
+<script src="https://js.arcgis.com/3.28/"></script>
+    
   </head>
   <body>
     <h1>Test01</h1>
+    <sript>
+      require(["esri/map"], function(Map) {
+  var map = new Map("map", {
+    center: [-118, 34.5],
+    zoom: 8,
+    basemap: "topo"
+  });
+});
+      
+      </script>
   </body>
 </html>
