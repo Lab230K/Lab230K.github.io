@@ -17,8 +17,13 @@
     <script>
       require([
         "esri/Map",
-        "esri/views/MapView"
-        ], function(Map, MapView) {
+        "esri/views/MapView",
+        //*** ADD ***//
+        "esri/widgets/BasemapToggle",
+        "esri/widgets/BasemapGallery"
+        //], function(Map, MapView) {
+        ], function(Map, MapView, BasemapToggle, BasemapGallery) {
+        
 
           var map = new Map({
             basemap: 
@@ -36,6 +41,14 @@
             center: [139.739577,35.6588095],
             zoom: 11
           });
+        
+          //*** ADD ***//
+  var basemapToggle = new BasemapToggle({
+    view: view,
+    secondMap: "satellite"
+  });
+        //*** ADD ***//
+  view.ui.add(basemapToggle, "bottom-right"); // Add to the view
       });
     </script>
   </head>
