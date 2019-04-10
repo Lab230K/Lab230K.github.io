@@ -50,6 +50,21 @@
         //*** ADD ***//
   view.ui.add(basemapToggle, "bottom-right"); // Add to the view
       });
+      
+      //*** ADD ***//
+ var basemapGallery = new BasemapGallery({
+    view: view,
+    source: {
+      portal: {
+        url: "https://www.arcgis.com",
+        useVectorBasemaps: true  // Load vector tile basemaps
+      }
+    }
+  });
+      
+      //*** ADD ***//
+  view.ui.add(basemapGallery, "top-right"); // Add to the view
+      
     </script>
   </head>
   <body>
