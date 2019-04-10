@@ -15,27 +15,30 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.11/"></script>
     <script>
-  require([
-      "esri/Map",
-      "esri/views/MapView"
-    ], function(Map, MapView) {
+      require([
+        "esri/Map",
+        "esri/views/MapView"
+        ], function(Map, MapView) {
 
-    var map = new Map({
-      basemap: "topo-vector"
-    });
+          var map = new Map({
+            basemap: //"topo-vector"
+                     "light-gray-vector"
+                     //"dark-gray-vector"
+                     //"satellite"
+                     //"streets-relief-vector"
+                     //"streets-navigation-vector"
+          });
 
-    var view = new MapView({
-      container: "viewDiv",
-      map: map,
-      center: [139.739577,35.6588095],
-      zoom: 11
-    });
-  });
-</script>
+          var view = new MapView({
+            container: "viewDiv",
+            map: map,
+            center: [139.739577,35.6588095],
+            zoom: 11
+          });
+      });
+    </script>
   </head>
   <body>
-  
-
     <div id="viewDiv"></div>
   </body>
 </html>
