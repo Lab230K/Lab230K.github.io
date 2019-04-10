@@ -22,7 +22,7 @@
       //"esri/views/MapView",
       "esri/views/SceneView"
       //        ], function(Map, MapView) {
-    ], function(Map, SceneView) {
+    ], function(Map, SceneView, search) {
         
         //"esri/views/MapView"
 
@@ -49,6 +49,15 @@
           z: 25000 // meters
         }
                   }
+              
+              //*** ADD ***//
+  // Search widget
+  var search = new Search({
+    view: view
+  });
+
+  view.ui.add(search, "top-right"); // Add to the view
+              
       });        
       });
     </script>
