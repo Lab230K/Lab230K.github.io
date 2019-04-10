@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>ArcGIS JavaScript Tutorials: Create a JavaScript starter app</title>
+    <style>
+      html, body, #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.11/"></script>
+    <script>
+      require([
+        "esri/Map",
+        
+              //*** ADD ***//
+      //"esri/views/MapView",
+      "esri/views/SceneView"
+      //        ], function(Map, MapView) {
+    ], function(Map, SceneView) {
+        
+        //"esri/views/MapView"
+
+          var map = new Map({
+            basemap: 
+                     "topo-vector"
+                     //"light-gray-vector"
+                     //"dark-gray-vector"
+                     //"satellite"
+                     //"streets-relief-vector"
+                     //"streets-navigation-vector"
+          });
+          //var view = new MapView({
+            var view = new SceneView({
+            container: "viewDiv",
+            map: map,
+            //center: [139.739577,35.6588095],
+            //zoom: 11
+                  camera: {
+        tilt: 65,
+        position: {
+          x: -118.71,
+          y: 33.75,
+          z: 25000 // meters
+        }
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
