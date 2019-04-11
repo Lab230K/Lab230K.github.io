@@ -24,7 +24,6 @@
         //], function(Map, MapView) {
         ], function(Map, MapView, BasemapToggle, BasemapGallery) {
         
-
           var map = new Map({
             basemap: 
                      "topo-vector"
@@ -34,7 +33,6 @@
                      //"streets-relief-vector"
                      //"streets-navigation-vector"
           });
-
           var view = new MapView({
             container: "viewDiv",
             map: map,
@@ -57,7 +55,7 @@
     source: {
       portal: {
         url: "https://www.arcgis.com",
-        useVectorBasemaps: ture  // Load vector tile basemaps
+        useVectorBasemaps: ture // Load vector tile basemaps
       }
     }
   });
@@ -71,4 +69,3 @@
     <div id="viewDiv"></div>
   </body>
 </html>
-
