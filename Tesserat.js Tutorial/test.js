@@ -6,5 +6,3 @@ Tesseract.recognize("./test2.png").then(function(result){
     const a = document.querySelector("#test2");
     a.innerHTML = result.html;
 })
-document.getElementById(dialogueBox).innerHTML = document.getElementById(test).innerHTML;
-say(result);
