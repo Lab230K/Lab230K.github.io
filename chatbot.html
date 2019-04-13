@@ -78,9 +78,9 @@
           let text = (input.toLowerCase()).replace(/[^\w\s\d]/gi, ""); //remove all chars except words, space and
           text = text.replace(/ a /g, " ").replace(/i feel /g, "").replace(/whats/g, "what is").replace(/please /g, "").replace(/ please/g, "");
           if(compare(trigger, reply, text)){
-            let product = compare(trigger, reply, text);
+            product = compare(trigger, reply, text);
           } else {
-            let product = alternative[Math.floor(Math.random() * alternative.length)];
+            product = alternative[Math.floor(Math.random() * alternative.length)];
           }
         }
         document.getElementById("chatbot").innerHTML = product;
