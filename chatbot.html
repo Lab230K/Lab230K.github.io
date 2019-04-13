@@ -86,14 +86,13 @@
         speak(product);
         document.getElementById("input").value = ""; //clear input value
       }
-      function compare(
-	    , array, string){
+      function compare(arr, array, string){
         let item;
-        for(let x=0; x<arr.length; x++){
+	for(let x=0; x<arr.length; x++){
           for(let y=0; y<array.length; y++){
             if(arr[x][y] == string){
               items = array[x];
-              item =  items[Math.floor(Math.random()*items.length)];
+                item = items[Math.floor(Math.random() * items.length)];
             }
           }
         }
