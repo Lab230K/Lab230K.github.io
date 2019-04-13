@@ -1,4 +1,4 @@
-﻿Tesseract.recognize("./test.png",{lang:"jpn"}).then(function(result){
+Tesseract.recognize("./test.png",{lang:"jpn"}).then(function(result){
     const a = document.querySelector("#test");
     a.innerHTML = result.html;
 })
