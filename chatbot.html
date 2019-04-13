@@ -84,7 +84,7 @@
           }
         }
         document.getElementById("chatbot").innerHTML = product;
-        say(product);
+        speak(product);
         document.getElementById("input").value = ""; //clear input value
       }
       function compare(arr, array, string){
@@ -110,6 +110,6 @@
             speechSynthesis.speak(utterance);
       }
     </script>
-    <script src="speech.js"></script>
+
   </body>
 </html>
