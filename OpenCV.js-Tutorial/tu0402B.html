@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hello OpenCV.js</title>
+</head>
+<body>
+<h2>Hello OpenCV.js</h2>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+
+  let src = cv.imread(imgElement);
+  let dst = new cv.Mat();
+
+let M = cv.matFromArray(2, 3, cv.CV_64FC1, [1, 0, 50, 0, 1, 100]);
+let dsize = new cv.Size(src.rows, src.cols);
+// You can try more different parameters
+cv.warpAffine(src, dst, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+
+
+cv.imshow('canvasOutput', dst);
+
+src.delete();
+dst.delete();
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

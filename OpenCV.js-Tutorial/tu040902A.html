@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Image Processing</title>
+</head>
+<body>
+<h2>Contour Features</h2>
+<h3>Moments</h3>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+  <div class="inputoutput">
+<span id="moments">momentsOutput</span>
+
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+let momentsOutput = document.getElementById('moments');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+  let src = cv.imread(imgElement);
+//0409 Begin
+//let dst = new cv.Mat();
+//let dst = cv.Mat.zeros(src.cols, src.rows, cv.CV_8UC3);
+let dst = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
+//cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
+cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+//cv.threshold(src, src, 120, 200, cv.THRESH_BINARY);
+  cv.threshold(src, src, 177, 200, cv.THRESH_BINARY);
+let contours = new cv.MatVector();
+
+let hierarchy = new cv.Mat();
+
+// You can try more different parameters
+cv.findContours(src, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+let cnt = contours.get(0);
+// draw contours with random Scalar
+for (let i = 0; i < contours.size(); ++i) {
+    let color = new cv.Scalar(Math.round(Math.random() * 255), Math.round(Math.random() * 255),
+                              Math.round(Math.random() * 255));
+    cv.drawContours(dst, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
+}
+let Moments = cv.moments(cnt, false);
+momentsOutput.innerHTML = Moments.m00;
+
+//cv.imshow('canvasOutput', dst);
+src.delete(); dst.delete(); contours.delete(); hierarchy.delete();
+
+//0409 End
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

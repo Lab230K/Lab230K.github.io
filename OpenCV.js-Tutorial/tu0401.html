@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hello OpenCV.js</title>
+</head>
+<body>
+<h2>Hello OpenCV.js</h2>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+
+  let src = cv.imread(imgElement);
+  let dst = new cv.Mat();
+// scale and shift are used to map the data to [0, 255].
+//src.convertTo(dst, cv.CV_8U, scale, shift);//error
+//  cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
+
+//let imgData = new ImageData(new Uint8ClampedArray(dst.data, dst.cols, dst.rows);
+
+//let ctx = canvas.getContext('2d');
+//ctx.clearRect(0, 0, canvas.width, canvas.height);
+//canvas.width = imgData.width;
+//canvas.height = imgData.height;
+//ctx.putImageData(imgData, 0, 0);
+
+let low = new cv.Mat(src.rows, src.cols, src.type(), [0, 0, 0, 0]);
+let high = new cv.Mat(src.rows, src.cols, src.type(), [150, 150, 150, 255]);
+// You can try more different parameters
+cv.inRange(src, low, high, dst);
+
+cv.imshow('canvasOutput', dst);
+
+src.delete();
+dst.delete();
+low.delete(); high.delete();
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

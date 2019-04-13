@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Image Processing</title>
+</head>
+<body>
+<h2>Template Matching</h2>
+<h3>Template Matching in OpenCV</h3>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc1" alt="No Image" />
+    <div class="caption">imageSrc1 <input type="file" id="fileInput1" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <img id="imageSrc2" alt="No Image" />
+    <div class="caption">imageSrc2 <input type="file" id="fileInput2" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement1 = document.getElementById('imageSrc1');
+let inputElement1 = document.getElementById('fileInput1');
+let imgElement2 = document.getElementById('imageSrc2');
+let inputElement2 = document.getElementById('fileInput2');
+let canvas = document.getElementById('canvasOutput');
+
+inputElement1.addEventListener('change', (e) => {
+  imgElement1.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+inputElement2.addEventListener('change', (e) => {
+  imgElement2.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+
+imgElement1.onload = function() {
+  let src = cv.imread(imgElement1);
+//0411 Begin
+
+let templ = cv.imread(imgElement2);
+let dst = new cv.Mat();
+let mask = new cv.Mat();
+cv.matchTemplate(src, templ, dst, cv.TM_CCOEFF, mask);
+let result = cv.minMaxLoc(dst, mask);
+let maxPoint = result.maxLoc;
+let color = new cv.Scalar(255, 0, 0, 255);
+let point = new cv.Point(maxPoint.x + templ.cols, maxPoint.y + templ.rows);
+cv.rectangle(src, maxPoint, point, color, 2, cv.LINE_8, 0);
+cv.imshow('canvasOutput', src);
+src.delete(); dst.delete(); mask.delete();
+//0411 End
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

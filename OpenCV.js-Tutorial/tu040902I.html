@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Image Processing</title>
+</head>
+<body>
+<h2>Contour Features</h2>
+<h3>Fitting an Ellipse</h3>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+  <div class="inputoutput">
+    <span id="moments">momentsOutput</span><br />
+    <span id="area">areaOutput</span><br />
+    <span id="perimeter">perimeterOutput</span>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+let momentsOutput = document.getElementById('moments');
+let areaOutput = document.getElementById('area');
+let perimeterOutput = document.getElementById('perimeter');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+  let src = cv.imread(imgElement);
+//0409 Begin
+let dst = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
+cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+cv.threshold(src, src, 177, 200, cv.THRESH_BINARY);
+let contours = new cv.MatVector();
+let hierarchy = new cv.Mat();
+cv.findContours(src, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+let cnt = contours.get(0);
+// You can try more different parameters
+let rotatedRect = cv.fitEllipse(cnt);
+let contoursColor = new cv.Scalar(255, 255, 255);
+let ellipseColor = new cv.Scalar(255, 0, 0);
+cv.drawContours(dst, contours, 0, contoursColor, 1, 8, hierarchy, 100);
+cv.ellipse1(dst, rotatedRect, ellipseColor, 1, cv.LINE_8);
+cv.imshow('canvasOutput', dst);
+src.delete(); dst.delete(); contours.delete(); hierarchy.delete(); cnt.delete();
+
+
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

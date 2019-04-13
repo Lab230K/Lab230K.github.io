@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hello OpenCV.js</title>
+</head>
+<body>
+<h2>Hello OpenCV.js</h2>
+<h3>Face Detection using Haar Cascades</h3>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+
+let src = cv.imread('imageSrc');
+let gray = new cv.Mat();
+cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+point1 = new cv.Point(50, 50);
+point2 = new cv.Point(250, 250);
+
+cv.putText(src, "test", {x: 50, y: 50}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
+
+    cv.rectangle(src, point1, point2, [255, 0, 0, 255]);
+
+
+cv.imshow('canvasOutput', src);
+src.delete(); gray.delete(); faceCascade.delete();
+eyeCascade.delete(); faces.delete(); eyes.delete();
+
+};
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

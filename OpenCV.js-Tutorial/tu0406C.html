@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Image Processing</title>
+</head>
+<body>
+<h2>Image Gradients</h2>
+<h3>One Important Matter!</h3>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput8U" ></canvas>
+    <div class="caption">canvasOutput8U</div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput64F" ></canvas>
+    <div class="caption">canvasOutput64F</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+  let src = cv.imread(imgElement);
+  //0406 Begin
+let dstx = new cv.Mat();
+let absDstx = new cv.Mat();
+cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
+// You can try more different parameters
+cv.Sobel(src, dstx, cv.CV_8U, 1, 0, 3, 1, 0, cv.BORDER_DEFAULT);
+cv.Sobel(src, absDstx, cv.CV_64F, 1, 0, 3, 1, 0, cv.BORDER_DEFAULT);
+cv.convertScaleAbs(absDstx, absDstx, 1, 0);
+cv.imshow('canvasOutput8U', dstx);
+cv.imshow('canvasOutput64F', absDstx);
+src.delete(); dstx.delete(); absDstx.delete();
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

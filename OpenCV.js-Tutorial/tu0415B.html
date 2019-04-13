@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Image Processing</title>
+</head>
+<body>
+<h2>Image Segmentation with Watershed Algorithm</h2>
+<h3>Image Background</h3>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+let momentsOutput = document.getElementById('moments');
+let areaOutput = document.getElementById('area');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+  let src = cv.imread(imgElement);
+//0415 Begin
+
+let dst = new cv.Mat();
+let gray = new cv.Mat();
+
+let opening = new cv.Mat();
+let coinsBg = new cv.Mat();
+// gray and threshold image
+cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+cv.threshold(gray, gray, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU);
+
+// get background
+let M = cv.Mat.ones(3, 3, cv.CV_8U);
+cv.erode(gray, gray, M);
+cv.dilate(gray, opening, M);
+cv.dilate(opening, coinsBg, M, new cv.Point(-1, -1), 3);
+
+//cv.imshow('canvasOutput', gray);
+//src.delete(); dst.delete(); gray.delete();
+
+cv.imshow('canvasOutput', coinsBg);
+src.delete(); dst.delete(); gray.delete(); opening.delete(); coinsBg.delete(); M.delete();
+//0415 End
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

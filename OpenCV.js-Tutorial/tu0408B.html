@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Image Processing</title>
+</head>
+<body>
+<h2>Image Pyramids</h2>
+<h3>Upsample</h3>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+  let src = cv.imread(imgElement);
+  //0408 Begin
+let dst = new cv.Mat();
+//cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
+// You can try more different parameters
+//cv.Canny(src, dst, 50, 100, 3, false);
+//cv.pyrDown(src, dst, new cv.Size(0, 0), cv.BORDER_DEFAULT);
+cv.pyrUp(src, dst, new cv.Size(0, 0), cv.BORDER_DEFAULT);
+cv.imshow('canvasOutput', dst);
+src.delete(); dst.delete();
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

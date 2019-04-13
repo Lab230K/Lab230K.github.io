@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Image Processing</title>
+</head>
+<body>
+<h2>Contour Features</h2>
+<h3>Contour Approximation</h3>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+  <div class="inputoutput">
+    <span id="moments">momentsOutput</span><br />
+    <span id="area">areaOutput</span><br />
+    <span id="perimeter">perimeterOutput</span>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+let momentsOutput = document.getElementById('moments');
+let areaOutput = document.getElementById('area');
+let perimeterOutput = document.getElementById('perimeter');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+  let src = cv.imread(imgElement);
+//0409 Begin
+//let dst = new cv.Mat();
+//let dst = cv.Mat.zeros(src.cols, src.rows, cv.CV_8UC3);
+let dst = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
+//cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
+cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+//cv.threshold(src, src, 120, 200, cv.THRESH_BINARY);
+//  cv.threshold(src, src, 177, 200, cv.THRESH_BINARY);
+  cv.threshold(src, src, 100, 200, cv.THRESH_BINARY);
+
+let contours = new cv.MatVector();
+
+let hierarchy = new cv.Mat();
+//new
+let poly = new cv.MatVector();
+//new
+// You can try more different parameters
+cv.findContours(src, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+////let cnt = contours.get(0);
+//let cnt = contours.get(20);
+//// draw contours with random Scalar
+//for (let i = 0; i < contours.size(); ++i) {
+//    let color = new cv.Scalar(Math.round(Math.random() * 255), Math.round(Math.random() * 255),
+//                              Math.round(Math.random() * 255));
+//    cv.drawContours(dst, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
+//}
+//let Moments = cv.moments(cnt, false);
+//momentsOutput.innerHTML = Moments.m00;
+//let area = cv.contourArea(cnt, false);
+//areaOutput.innerHTML = area;
+//cv.imshow('canvasOutput', dst);
+//let perimeter = cv.arcLength(cnt, true);
+//perimeterOutput.innerHTML = perimeter;
+// approximates each contour to polygon
+for (let i = 0; i < contours.size(); ++i) {
+    let tmp = new cv.Mat();
+    let cnt = contours.get(i);
+    // You can try more different parameters
+    cv.approxPolyDP(cnt, tmp, 3, true);
+    poly.push_back(tmp);
+    cnt.delete(); tmp.delete();
+}
+// draw contours with random Scalar
+for (let i = 0; i < contours.size(); ++i) {
+    let color = new cv.Scalar(Math.round(Math.random() * 255), Math.round(Math.random() * 255),
+                              Math.round(Math.random() * 255));
+    cv.drawContours(dst, poly, i, color, 1, 8, hierarchy, 0);
+}
+
+cv.imshow('canvasOutput', dst);
+
+//src.delete(); dst.delete(); contours.delete(); hierarchy.delete();
+//src.delete(); dst.delete(); contours.delete(); hierarchy.delete(); cnt.delete();
+
+src.delete(); dst.delete(); hierarchy.delete(); contours.delete(); poly.delete();
+//0409 End
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>

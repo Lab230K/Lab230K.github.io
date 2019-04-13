@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Image Processing</title>
+</head>
+<body>
+<h2>Foreground Extraction using GrabCut Algorithm</h2>
+<h3>Image GrabCut</h3>
+<p id="status">OpenCV.js is loading...</p>
+
+<div>
+  <div class="inputoutput">
+    <img id="imageSrc" alt="No Image" />
+    <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+  </div>
+  <div class="inputoutput">
+    <canvas id="canvasOutput" ></canvas>
+    <div class="caption">canvasOutput</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+let imgElement = document.getElementById('imageSrc');
+let inputElement = document.getElementById('fileInput');
+let canvas = document.getElementById('canvasOutput');
+
+let momentsOutput = document.getElementById('moments');
+let areaOutput = document.getElementById('area');
+
+inputElement.addEventListener('change', (e) => {
+  imgElement.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+imgElement.onload = function() {
+  let src = cv.imread(imgElement);
+//0416 Begin
+
+cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0);
+let mask = new cv.Mat();
+let bgdModel = new cv.Mat();
+let fgdModel = new cv.Mat();
+let rect = new cv.Rect(50, 50, 260, 280);
+cv.grabCut(src, mask, rect, bgdModel, fgdModel, 1, cv.GC_INIT_WITH_RECT);
+// draw foreground
+for (let i = 0; i < src.rows; i++) {
+    for (let j = 0; j < src.cols; j++) {
+        if (mask.ucharPtr(i, j)[0] == 0 || mask.ucharPtr(i, j)[0] == 2) {
+            src.ucharPtr(i, j)[0] = 0;
+            src.ucharPtr(i, j)[1] = 0;
+            src.ucharPtr(i, j)[2] = 0;
+        }
+    }
+}
+// draw grab rect
+let color = new cv.Scalar(0, 0, 255);
+let point1 = new cv.Point(rect.x, rect.y);
+let point2 = new cv.Point(rect.x + rect.width, rect.y + rect.height);
+cv.rectangle(src, point1, point2, color);
+cv.imshow('canvasOutput', src);
+src.delete(); mask.delete(); bgdModel.delete(); fgdModel.delete();
+
+//0416 End
+};
+
+function onOpenCvReady() {
+  document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+}
+</script>
+<script async src="https://docs.opencv.org/4.0.1/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+</html>
