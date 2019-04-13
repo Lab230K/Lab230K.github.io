@@ -14,9 +14,19 @@
     <script type="text/javascript" src="test.js"></script>
     <script type="text/javascript" src="https://lab230k.github.io/js/speech.js"></script>
     <script>
-      result = document.getElementById("test").innerHTML;
-      document.getElementById("dialogueBox").value = "result123";
-      say(result);
+      setTimeout(function() {
+        result = document.getElementById("test").innerHTML;
+        //document.getElementById("dialogueBox").value = "result123";
+        say(result);
+        alert("test ok"); 
+      }, 3000);
+      setTimeout(function() {
+        result = document.getElementById("test2").innerHTML;
+        //document.getElementById("dialogueBox").value = "result123";
+        say(result);
+        alert("test2 ok"); 
+      }, 1000);
+      
     </script>
   </body>
 </html>
