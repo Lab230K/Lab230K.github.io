@@ -68,16 +68,16 @@ Updated: 2019/04/14
     <a href="https://glaze-sawfish.glitch.me/pilot1.html">Get Weather Informations</a><br />
     <a href="https://regular-flock.glitch.me/robot.html">Using Android mobile phone sensors</a><br />
 
-* SOTA Technologies(最先端の技術)(機械学習、自然言語処理など)
-
-    OCR with NLP using training model<br />
+* SOTA Technologies(最先端の技術)(機械学習、自然言語処理など)<br />
+    Cloud base Jupyter-like notebook - Observable<br />
+    Data visualization - d3.js<br />
     nVIDIA CUDA - gpu.js<br />
+    OCR with NLP using training model<br />
     Self-driving car(Training) - TensorFlow.js<br />
     Word2Vec/Doc2Vec(NLP) papers coding<br />
-
-* Cloud platform for JavaScript Developer
-
+    <br />
+* Cloud platform for JavaScript Developer<br />
     AWS<br />
     Azure<br />
-    GCP<br />
-    Watson
+    GCP<br /> 
+    Watson<br />
