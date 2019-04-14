@@ -15,7 +15,9 @@ Geographer, Adventurer and Scientist
 >> We do SHARE our knowledge.
 
 <small>All coding by pure JavaScript ES2019</small>
+
 Updated: 2019/04/14
+
 * GIS/DB fields
 
     <b>2D Maps</b><br />
@@ -36,6 +38,7 @@ Updated: 2019/04/14
     Access a UniVerse Multi-value DB - Universe.js by Simon Emms, UK<br />
     <br />
 * Remote Sensing - Sensors on Vehicles</i><br />
+
     Visual<br />
     Object Detection(物体検知) - YOLOv3<br />
     <a href="https://Lab230K.github.io/OpenCV.js-Tutorial/index.html">OpenCV.js 4.0.1 Tutorial 66 examples by Lab230K</a><br />
@@ -64,10 +67,12 @@ Updated: 2019/04/14
     <a href="https://regular-flock.glitch.me/robot.html">Using Android mobile phone sensors</a><br />
     <br />
 * SOTA Technologies(最先端の技術)(機械学習、自然言語処理など)
+
     OCR with NLP using training model
     nVIDIA CUDA - gpu.js
-   Self-driving car(Training) - TensorFlow.js
+    Self-driving car(Training) - TensorFlow.js
     Word2Vec/Doc2Vec(NLP) papers coding
 
 * Cloud platform for JavaScript Developer
+
     AWS, Azure, GCP, Watson
