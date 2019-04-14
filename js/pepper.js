@@ -1,4 +1,4 @@
-let host = "192.168.0.1";
+let host = document.getElementById("hostip");
 
 function connected() {
   console.log("connected");
