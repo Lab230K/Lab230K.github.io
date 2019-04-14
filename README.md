@@ -1,27 +1,26 @@
 # Lab230K.github.io
 Geographer, Adventurer and Scientist
 
-test for makedown
 > 12345678901234567890123456789012345678901234567890123456789012345678901234567890
 
-> This is a great year for the Lab. We found that can do almost everything just
-need a Web Browser.
+>   This is a great year for the Lab. We found that can do almost everything just
+> need a Web Browser.
 
-> The Lab is focus on so called "3S" technologies which including Geographic
-Information Sciences, Remote Sensing and Global Navigation Satellite System(as
-well known as GPS). Handling lot of SOTA(State-of-the-art) technologies. Say,
-Data Science(AI/ML/DL) , IoT/AIoT(AI x IoT), IEEE Smart Cities, nVIDIA CUDA-X AI
-acceleration libraries, ect.
+>   The Lab is focus on so called "3S" technologies which including Geographic
+> Information Sciences, Remote Sensing and Global Navigation Satellite System(as
+> well known as GPS). Handling lot of SOTA(State-of-the-art) technologies. Say,
+> Data Science(AI/ML/DL) , IoT/AIoT(AI x IoT), IEEE Smart Cities, nVIDIA CUDA-X AI
+> acceleration libraries, ect.
 
 > We are not only Geographers but also Adventurers and Scientists.
       
 >> We do share our knowledge.
 
->       *****
+>         *****
 
 
 
-
+MarkDown testing...
 <!DOCTYPE html>
 <html>
   <head>
