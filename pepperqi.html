@@ -8,14 +8,14 @@
   </head>
   <body>
     <input type="text" id="ip" placeholder="192.168.0.1"></input>
-    <button type="button" id="connect-btn" onlick="connected();">Connect</button>
+    <button type="button" id="connect-btn" onclick="connected();">Connect</button>
     <button type="button" id="disconnect-btn" onclick="disconnected();">Disconnect</button>
     <br />
     <div>
       Test funtions<br />
       <button type="button" id="">Function01</button><br />
       <button type="button" id="">Say Hi!</button><br />
-      <button type="button" id="test-btn" onclick="disconnected();">test</button>
+      <button type="button" id="test-btn" onclick="a();">test</button>
     </div>
     <script>
       let host = document.getElementById("hostip");
@@ -27,10 +27,11 @@ function connected() {
 function disconnected() {
   console.log("disconnected");
 }
-/*
-QiSession(function(session) {
-  connected();
-}, disconnected, host);*/
+function a() {
+  QiSession(function(session) {
+    connected();
+    }, disconnected, host);
+  }
     </script>
   </body>
 </html>
