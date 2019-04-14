@@ -18,8 +18,6 @@ Geographer, Adventurer and Scientist
 Updated: 2019/04/14
 * GIS/DB fields
 
-
-MarkDown testing...
     <b>2D Maps</b><br />
     <a href="">ArcGIS 2D Map 3.x(deleted by accident 04/14...)</a><br />
     <a href="https://lab230k.github.io/Maps0410R.html">ArcGIS 2D Raster Map 4.x(Theme changeable)</a><br />
@@ -65,13 +63,11 @@ MarkDown testing...
     <a href="https://glaze-sawfish.glitch.me/pilot1.html">Get Weather Informations</a><br />
     <a href="https://regular-flock.glitch.me/robot.html">Using Android mobile phone sensors</a><br />
     <br />
-* SOTA Technologies(最先端の技術)(機械学習、自然言語処理など)<br />
-**    OCR with NLP using training model<br />
-**    nVIDIA CUDA - gpu.js<br />    
-*    Self-driving car(Training) - TensorFlow.js<br />
-**    Word2Vec/Doc2Vec(NLP) papers coding
+* SOTA Technologies(最先端の技術)(機械学習、自然言語処理など)
+    OCR with NLP using training model
+    nVIDIA CUDA - gpu.js
+   Self-driving car(Training) - TensorFlow.js
+    Word2Vec/Doc2Vec(NLP) papers coding
 
-* Cloud platform for JavaScript Developer<br />
-    AWS, Azure, GCP, Watson<br />
-  </body>
-</html>
+* Cloud platform for JavaScript Developer
+    AWS, Azure, GCP, Watson
