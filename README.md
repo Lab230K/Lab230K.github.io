@@ -29,6 +29,7 @@ Updated: 2019/04/14
     <a href="https://outstanding-afterthought.glitch.me/leaflet.html">Leaflet map + Navigation(some times OSM server would out of order )</a><br />
     Open Street Map<br />
     TomTom Map<br />
+    
     <b>3D Maps</b><br />
     <a href="https://lab230k.github.io/Test040404.html">ArcGIS 3D Map 4.x + Finding by Address</a><br />
     <a href="https://outstanding-afterthought.glitch.me/testArcGIS410.html">ArcGIS 3D Map 4.x + Big Data + Road layer</a><br />
@@ -36,7 +37,6 @@ Updated: 2019/04/14
     <a href="https://glaze-sawfish.glitch.me/pilot1.html">WRLD 3D Map +  Fling along the Yamanote Line(山手線) Simulation</a><br />
     <a href="https://outstanding-afterthought.glitch.me/test.html">WRLD 3D Indoor Map</a><br />
     Access a UniVerse Multi-value DB - Universe.js by Simon Emms, UK<br />
-    <br />
 * Remote Sensing - Sensors on Vehicles</i><br />
 
     Visual<br />
@@ -68,8 +68,8 @@ Updated: 2019/04/14
     <br />
 * SOTA Technologies(最先端の技術)(機械学習、自然言語処理など)
 
-    OCR with NLP using training model
-    nVIDIA CUDA - gpu.js
+    OCR with NLP using training model<br />
+    nVIDIA CUDA - gpu.js<br />
     Self-driving car(Training) - TensorFlow.js
     Word2Vec/Doc2Vec(NLP) papers coding
 
