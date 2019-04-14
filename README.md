@@ -1,20 +1,8 @@
 # Lab230K.github.io
 Geographer, Adventurer and Scientist
 
-test for makedown
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hello, GitHub</title>
-  </head>
-  <body>
-    <small>All coding by pure JavaScript ES2019</small>
-    <Pre>
-    12345678901234567890123456789012345678901234567890123456789012345678901234567890
-    
-      This is a great year for the Lab. We found that can do almost everything just
+test for makedown>
+>  This is a great year for the Lab. We found that can do almost everything just
     need a Web Browser.
       
       The Lab is focus on so called "3S" technologies which including Geographic
@@ -27,6 +15,20 @@ test for makedown
       
       We do share our knowledge.
             *****
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, GitHub</title>
+  </head>
+  <body>
+    <small>All coding by pure JavaScript ES2019</small>
+    <Pre>
+    12345678901234567890123456789012345678901234567890123456789012345678901234567890
+    
+     
     </pre>
     Updated: 2019/04/14<br />
     <br />
