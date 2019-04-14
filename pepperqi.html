@@ -20,16 +20,12 @@
     <script>
       let host = document.getElementById("hostip");
 
-function connected() {
-  console.log("connected");
-}
-
-function disconnected() {
-  console.log("disconnected");
-}
-QiSession(function(session) {
-    connected;
-    }, disconnected, host);
+      QiSession(function (session) {
+        console.log("connected!");
+        // you can now use your QiSession
+        }, function () {
+        console.log("disconnected");
+      }, host);
   
     </script>
   </body>
