@@ -12,7 +12,7 @@ Geographer, Adventurer and Scientist
 
 > We are not only Geographers but also Adventurers and Scientists.
       
->> We do share our knowledge.
+>> We do SHARE our knowledge.
 
 <small>All coding by pure JavaScript ES2019</small>
 Updated: 2019/04/14
@@ -37,7 +37,7 @@ MarkDown testing...
     <a href="https://outstanding-afterthought.glitch.me/test.html">WRLD 3D Indoor Map</a><br />
     Access a UniVerse Multi-value DB - Universe.js by Simon Emms, UK<br />
     <br />
-    <i>Remote Sensing - Sensors on Vehicles</i><br />
+* Remote Sensing - Sensors on Vehicles</i><br />
     Visual<br />
     Object Detection(物体検知) - YOLOv3<br />
     <a href="https://Lab230K.github.io/OpenCV.js-Tutorial/index.html">OpenCV.js 4.0.1 Tutorial 66 examples by Lab230K</a><br />
@@ -65,13 +65,13 @@ MarkDown testing...
     <a href="https://glaze-sawfish.glitch.me/pilot1.html">Get Weather Informations</a><br />
     <a href="https://regular-flock.glitch.me/robot.html">Using Android mobile phone sensors</a><br />
     <br />
-    SOTA Technologies(最先端の技術)(機械学習、自然言語処理など)<br />
-    OCR with NLP using training model<br />
-    nVIDIA CUDA - gpu.js<br />    
-    Self-driving car(Training) - TensorFlow.js<br />
-    Word2Vec/Doc2Vec(NLP) papers coding<br />
-    <br />
-    Cloud platform for JavaScript Developer<br />
+* SOTA Technologies(最先端の技術)(機械学習、自然言語処理など)<br />
+**    OCR with NLP using training model<br />
+**    nVIDIA CUDA - gpu.js<br />    
+*    Self-driving car(Training) - TensorFlow.js<br />
+**    Word2Vec/Doc2Vec(NLP) papers coding
+
+* Cloud platform for JavaScript Developer<br />
     AWS, Azure, GCP, Watson<br />
   </body>
 </html>
