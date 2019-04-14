@@ -1,12 +1,10 @@
 # Lab230K.github.io
 Geographer, Adventurer and Scientist
 
-> 12345678901234567890123456789012345678901234567890123456789012345678901234567890
-
->   This is a great year for the Lab. We found that can do almost everything just
+> This is a great year for the Lab. We found that can do almost everything just
 > need a Web Browser.
 
->   The Lab is focus on so called "3S" technologies which including Geographic
+> The Lab is focus on so called "3S" technologies which including Geographic
 > Information Sciences, Remote Sensing and Global Navigation Satellite System(as
 > well known as GPS). Handling lot of SOTA(State-of-the-art) technologies. Say,
 > Data Science(AI/ML/DL) , IoT/AIoT(AI x IoT), IEEE Smart Cities, nVIDIA CUDA-X AI
@@ -16,27 +14,12 @@ Geographer, Adventurer and Scientist
       
 >> We do share our knowledge.
 
->         *****
-
+<small>All coding by pure JavaScript ES2019</small>
+Updated: 2019/04/14
+* GIS/DB fields
 
 
 MarkDown testing...
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hello, GitHub</title>
-  </head>
-  <body>
-    <small>All coding by pure JavaScript ES2019</small>
-    <Pre>
-    
-    
-     
-    </pre>
-    Updated: 2019/04/14<br />
-    <br />
-    <i>GIS/DB fields</i><br />
     <b>2D Maps</b><br />
     <a href="">ArcGIS 2D Map 3.x(deleted by accident 04/14...)</a><br />
     <a href="https://lab230k.github.io/Maps0410R.html">ArcGIS 2D Raster Map 4.x(Theme changeable)</a><br />
