@@ -48,6 +48,7 @@ Updated: 2019/04/14
     OCR then say it in English</a><br />
     OCR then say it in Japanese</a><br />
     VR - Mozilla A-Frame<br />
+    
     Acoustic<br />
     音声、音楽処理 - WebAudio<br />
     <a href="https://regular-flock.glitch.me/station0114b2.html">Web Speech 音声合成、認識(英語/日本語)</a><br />
@@ -59,20 +60,24 @@ Updated: 2019/04/14
     <a href="https://regular-flock.glitch.me/robot.html">音声処理、遠隔会議、Stream - WebRTC(not finish yet)</a><br />
     <br />
     <i>Robotics(Humanoid Robot/Car/Drone/ROV)</i><br />
+    
     ROS - roslib.js<br />
     SoftBank Pepper - NAOqi 2.5.8 JavaScript SDK<br />
     <a href="https://regular-flock.glitch.me/robot.html">Get DateTime</a><br />
     <a href="https://regular-flock.glitch.me/robot.html">Get GeoLoation from GPS/WiFi</a><br />
     <a href="https://glaze-sawfish.glitch.me/pilot1.html">Get Weather Informations</a><br />
     <a href="https://regular-flock.glitch.me/robot.html">Using Android mobile phone sensors</a><br />
-    <br />
+
 * SOTA Technologies(最先端の技術)(機械学習、自然言語処理など)
 
     OCR with NLP using training model<br />
     nVIDIA CUDA - gpu.js<br />
-    Self-driving car(Training) - TensorFlow.js
-    Word2Vec/Doc2Vec(NLP) papers coding
+    Self-driving car(Training) - TensorFlow.js<br />
+    Word2Vec/Doc2Vec(NLP) papers coding<br />
 
 * Cloud platform for JavaScript Developer
 
-    AWS, Azure, GCP, Watson
+    AWS<br />
+    Azure<br />
+    GCP<br />
+    Watson
