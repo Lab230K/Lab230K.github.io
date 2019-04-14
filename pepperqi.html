@@ -18,16 +18,19 @@
       <button type="button" id="test-btn" onclick="disconnected();">test</button>
     </div>
     <script>
-      function function01 {
-        
-      };
-      function sayhi {
-        
-      };
-      function saybye {
-        
-      };
+      let host = document.getElementById("hostip");
+
+function connected() {
+  console.log("connected");
+}
+
+function disconnected() {
+  console.log("disconnected");
+}
+
+QiSession(function(session) {
+  connected();
+}, disconnected, host);
     </script>
-    <script defer src="js/pepper.js"></script>
   </body>
 </html>
