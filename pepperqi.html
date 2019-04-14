@@ -18,6 +18,7 @@
       <button type="button" id="test-btn" onclick="a();">test</button>
     </div>
     <script>
+      function a() {
       let host = document.getElementById("hostip");
 
       QiSession(function (session) {
@@ -26,7 +27,7 @@
         }, function () {
         console.log("disconnected");
       }, host);
-  
+  }
     </script>
   </body>
 </html>
