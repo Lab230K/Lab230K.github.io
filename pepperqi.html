@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Pepper JavaScript Sample</title>
@@ -18,16 +18,23 @@
       <button type="button" id="test-btn" onclick="a();">test</button>
     </div>
     <script>
-      function a() {
       let host = document.getElementById("hostip");
-
-      QiSession(function (session) {
+      
+      function connected() {
         console.log("connected!");
-        // you can now use your QiSession
-        }, function () {
+      };
+      function disonected() {
         console.log("disconnected");
-      }, host);
-  }
+      };
+      function a() {
+      
+      QiSession(function (session) {
+        conneted(),
+        disconneted(),
+        host);
+      };
+      
+      };
     </script>
   </body>
 </html>
