@@ -18,19 +18,19 @@
       <button type="button" id="test-btn" onclick="a();">test</button>
     </div>
     <script>
-      let host = document.getElementById("hostip");
+      let host = document.getElementById("ip");
       
       function connected() {
         console.log("connected!");
       };
-      function disonected() {
+      function disconnected() {
         console.log("disconnected");
       };
       function a() {
       
       QiSession(function (session) {
-        conneted(),
-        disconneted(),
+        connected(),
+        disconnected(),
         host);
       };
       
